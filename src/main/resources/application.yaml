@@ -1,0 +1,21 @@
+
+
+spring:
+  main:
+    allow-circular-references: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  liquibase:
+    change-log: "classpath:db/changelog/db.changelog-master.xml"
+    enabled: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+

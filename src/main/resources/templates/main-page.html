@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+        <link rel="stylesheet" href="/css/main.css">
+        <title>Contacts</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1 style="margin-left: 20px">КНИГИ</h1>
+            <div class="search_block">
+                <form style="margin-right: 20px" th:action="@{/}" method="get">
+                    <input type="text" name="bookName" placeholder="Наименование книги" />
+                    <input type="text" name="authorName" placeholder="Имя автора" />
+                    <button type="submit" style="font-size: 15px">Найти</button>
+                </form>
+                <form style="margin-right: 20px" th:action="@{/}" method="get">
+                    <input type="text" name="categoryName" placeholder="Поиск по категории" />
+                    <button type="submit" style="font-size: 15px">Найти</button>
+                </form>
+            </div>
+        </div>
+        <div class="empty_block"></div>
+        <div class="books" th:each="book : ${bookList}">
+            <div class="books_block">
+                <div class="book">
+                    <div class="book_data">
+                        <div class="author_block">
+                            <p>👤 Автор:</p>
+                            <div class="author_name" th:text="${book.authorName}">Имя Фамилия Автора</div>
+                        </div>
+                        <div class="book_block">
+                            <p>📖 Название книги:</p>
+                            <div class="book_name" th:text="${book.bookName}">bookName</div>
+                        </div>
+                        <div class="category_block">
+                            <p>📚 Категория:</p>
+                            <div class="category_name" th:text="${book.category.categoryName}">categoryName</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="edit_block">
+                    <form th:action="@{/edit/{id} (id=${book.id})}" th:method="get">
+                        <button class="edit_button" type="submit">📝</button>
+                    </form>
+                    <form th:action="@{/remove/{id} (id=${book.id})}" th:method="post">
+                        <button class="edit_button" type="submit">🗑</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-buttons">
+            <a th:href="@{/create}" class="footer-button">
+                Добавить книгу
+            </a>
+        </div>
+    </body>
+</html>

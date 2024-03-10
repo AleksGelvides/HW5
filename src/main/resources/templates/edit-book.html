@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+        <link rel="stylesheet" href="/css/main.css">
+        <title>Contacts</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1 style="margin-left: 20px">КНИГИ</h1>
+        </div>
+        <form th:action="@{/{id} (id=${book.id})}" th:method="post">
+            <div class="books_block edit">
+                <div class="book">
+                    <div class="book_data">
+                        <div class="author_block">
+                            <input type="hidden" id="id" th:field="*{book.id}">
+                            <p style="margin-left: 20px">👤 Автор:</p>
+                            <label for="firstName"></label><input type="text" id="firstName" required th:field="*{book.authorName}">
+                        </div>
+                        <div class="book_block">
+                            <p>📖 Название книги:</p>
+                            <label for="book_name"></label><input type="text" id="book_name" required th:field="*{book.bookName}">
+                        </div>
+                        <div class="category_block" th:value="${book.category.categoryName}">
+                            <p>📚 Категория:</p>
+                            <label for="category_name"></label><input type="text" id="category_name" required th:field="*{book.category.categoryName}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-buttons">
+                <button class="footer-button" type="submit">Сохранить</button>
+                <a th:href="@{/}" class="footer-button">Отменить</a>
+            </div>
+        </form>
+    </body>
+</html>
